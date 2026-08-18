@@ -649,36 +649,65 @@ The production application has been tested successfully for the following functi
 
 ## 📸 Screenshots
 
-Project screenshots can be stored inside:
+### Home Page
 
-```text
-docs/screenshots/
-```
+![BioNova Home](docs/screenshots/home.png)
 
-Recommended screenshots:
+### Login
 
-1. BioNova Home Page
-2. Registration Page
-3. Login Page
-4. Student Onboarding
-5. Student Dashboard
-6. Browse Quizzes
-7. Quiz Details
-8. Quiz Attempt
-9. Quiz Result
-10. Attempt History
-11. Progress Analytics
-12. Leaderboard
-13. Certificates
-14. Admin Dashboard
-15. Quiz Management
-16. Admin Analytics
+![BioNova Login](docs/screenshots/login.png)
 
-Example Markdown:
+### Register
 
-```markdown
-![BioNova Home Page](docs/screenshots/home-page.png)
-```
+![BioNova Register](docs/screenshots/register.png)
+
+### Student Dashboard
+
+![Student Dashboard](docs/screenshots/student-dashboard.png)
+
+### Quiz Library
+
+![Quiz Library](docs/screenshots/quiz-library.png)
+
+### Quiz Attempt
+
+![Quiz Attempt](docs/screenshots/quiz-attempt.png)
+
+### Quiz Result
+
+![Quiz Result](docs/screenshots/quiz-result.png)
+
+### Progress Analytics
+
+![Progress](docs/screenshots/progress.png)
+
+### Leaderboard
+
+![Leaderboard](docs/screenshots/leaderboard.png)
+
+### Certificate
+
+![Certificate](docs/screenshots/certificate.png)
+
+### Admin Dashboard
+
+![Admin Dashboard](docs/screenshots/admin-dashboard.png)
+
+### Admin Quiz Management
+
+![Admin Quiz Management](docs/screenshots/admin-quiz-management.png)
+
+### Admin Category Management
+
+![Admin Category Management](docs/screenshots/admin-category-management.png)
+
+### Admin Students
+
+![Admin Students](docs/screenshots/admin-students.png)
+
+### Admin Analytics
+
+![Admin Analytics](docs/screenshots/admin-analytics.png)
 
 ---
 
