@@ -1,0 +1,446 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --app-bg: #f7faf9;
+  --surface: #ffffff;
+  --surface-muted: #f1f5f4;
+
+  --border: #dce7e4;
+  --border-strong: #cbd5d1;
+
+  --text-primary: #102a2a;
+  --text-secondary: #4b6464;
+  --text-muted: #8aa09c;
+
+  /* BioNova primary theme */
+  --primary: #0f766e;
+  --primary-hover: #115e59;
+  --primary-soft: #ccfbf1;
+
+  /* Supporting biotechnology colors */
+  --secondary: #2563eb;
+  --secondary-hover: #1d4ed8;
+  --secondary-soft: #dbeafe;
+
+  --accent: #7c3aed;
+  --accent-soft: #ede9fe;
+
+  --success: #059669;
+  --success-soft: #d1fae5;
+
+  --danger: #e11d48;
+  --danger-soft: #ffe4e6;
+
+  --warning: #d97706;
+  --warning-soft: #fef3c7;
+
+  --info: #0891b2;
+  --info-soft: #cffafe;
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+
+  --shadow-sm:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 1px 3px rgba(15, 23, 42, 0.08);
+
+  --shadow-md:
+    0 4px 12px rgba(15, 23, 42, 0.08);
+
+  --shadow-lg:
+    0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* =========================================================
+   GLOBAL TYPOGRAPHY
+   Smaller across the whole BioNova platform
+========================================================= */
+
+html {
+  scroll-behavior: smooth;
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 1rem;
+  line-height: 1.5;
+
+  background: var(--app-bg);
+  color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+}
+
+h1 {
+  line-height: 1.15;
+}
+
+h2 {
+  line-height: 1.2;
+}
+
+h3 {
+  line-height: 1.25;
+}
+
+p {
+  line-height: 1.5;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   RESPONSIVE FONT SIZE
+
+   Desktop/laptop:
+   compact 14px base
+
+   Mobile:
+   slightly larger for readability
+========================================================= */
+
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+/* --------------------------------------------------
+   Shared surfaces
+-------------------------------------------------- */
+
+.ui-surface {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.ui-surface-muted {
+  background: var(--surface-muted);
+
+  border-radius: var(--radius-md);
+}
+
+.ui-section {
+  padding: 1.25rem;
+}
+
+/* --------------------------------------------------
+   Page spacing
+-------------------------------------------------- */
+
+.ui-page {
+  padding: 1rem;
+}
+
+@media (min-width: 640px) {
+  .ui-page {
+    padding: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------
+   Typography
+-------------------------------------------------- */
+
+.ui-title {
+  color: var(--text-primary);
+
+  font-weight: 900;
+
+  line-height: 1.15;
+}
+
+.ui-subtitle {
+  color: var(--text-secondary);
+
+  line-height: 1.5;
+}
+
+.ui-label {
+  color: var(--text-muted);
+
+  font-size: 0.7rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------
+   Buttons
+-------------------------------------------------- */
+
+.ui-button-primary {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.45rem;
+
+  border: none;
+
+  border-radius: var(--radius-sm);
+
+  background: var(--primary);
+
+  color: white;
+
+  font-weight: 700;
+
+  padding: 0.65rem 1rem;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ui-button-primary:hover {
+  background: var(--primary-hover);
+}
+
+.ui-button-primary:active {
+  transform: translateY(1px);
+}
+
+.ui-button-secondary {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 0.45rem;
+
+  border: 1px solid var(--border-strong);
+
+  border-radius: var(--radius-sm);
+
+  background: white;
+
+  color: var(--text-secondary);
+
+  font-weight: 700;
+
+  padding: 0.65rem 1rem;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.ui-button-secondary:hover {
+  background: var(--surface-muted);
+
+  border-color: var(--primary);
+
+  color: var(--primary);
+}
+
+/* --------------------------------------------------
+   Inputs
+-------------------------------------------------- */
+
+.ui-input {
+  width: 100%;
+
+  border: 1px solid var(--border-strong);
+
+  border-radius: var(--radius-sm);
+
+  background: white;
+
+  color: var(--text-primary);
+
+  padding: 0.75rem 0.9rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ui-input::placeholder {
+  color: var(--text-muted);
+}
+
+.ui-input:focus {
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px var(--primary-soft);
+}
+
+/* --------------------------------------------------
+   Badges
+-------------------------------------------------- */
+
+.ui-badge-success {
+  display: inline-flex;
+
+  align-items: center;
+
+  border-radius: 999px;
+
+  background: var(--success-soft);
+
+  color: var(--success);
+
+  font-size: 0.7rem;
+
+  font-weight: 800;
+
+  padding: 0.3rem 0.65rem;
+}
+
+.ui-badge-danger {
+  display: inline-flex;
+
+  align-items: center;
+
+  border-radius: 999px;
+
+  background: var(--danger-soft);
+
+  color: var(--danger);
+
+  font-size: 0.7rem;
+
+  font-weight: 800;
+
+  padding: 0.3rem 0.65rem;
+}
+
+.ui-badge-warning {
+  display: inline-flex;
+
+  align-items: center;
+
+  border-radius: 999px;
+
+  background: var(--warning-soft);
+
+  color: var(--warning);
+
+  font-size: 0.7rem;
+
+  font-weight: 800;
+
+  padding: 0.3rem 0.65rem;
+}
+
+.ui-badge-info {
+  display: inline-flex;
+
+  align-items: center;
+
+  border-radius: 999px;
+
+  background: var(--info-soft);
+
+  color: var(--info);
+
+  font-size: 0.7rem;
+
+  font-weight: 800;
+
+  padding: 0.3rem 0.65rem;
+}
+
+/* --------------------------------------------------
+   BioNova utilities
+-------------------------------------------------- */
+
+.bionova-gradient {
+  background:
+    linear-gradient(
+      135deg,
+      #0f766e 0%,
+      #0891b2 55%,
+      #2563eb 100%
+    );
+}
+
+.bionova-gradient-soft {
+  background:
+    linear-gradient(
+      135deg,
+      #ccfbf1 0%,
+      #cffafe 55%,
+      #dbeafe 100%
+    );
+}
+
+.bionova-text-gradient {
+  background:
+    linear-gradient(
+      90deg,
+      #0f766e,
+      #0891b2,
+      #2563eb
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+/* =========================================================
+   EXTRA COMPACT DESKTOP UI
+========================================================= */
+
+@media (min-width: 1024px) {
+  .ui-section {
+    padding: 1.15rem;
+  }
+
+  .ui-page {
+    padding: 1.35rem;
+  }
+}

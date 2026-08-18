@@ -1,0 +1,34 @@
+'''
+Student token
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwicm9sZSI6IlNUVURFTlQiLCJpYXQiOjE3ODU5MzM4OTcsImV4cCI6MTc4NjAyMDI5N30.1drQQh34e9wWxozGU3lAL-jFEZwIDvAad3A8KEqrWpQ
+
+Admin token
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzg1OTM1MDQ1LCJleHAiOjE3ODYwMjE0NDV9.25MpoTUHk1YxJq187q5Wg9in0NHOoxuwH7_1zFoY0ks
+
+Reset token
+
+d84f4181df8b3b6a62f57fa130df404ee65bb984ede3ad8c71cd9b0d066eb349
+
+New Student token
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyIiwicm9sZSI6IlNUVURFTlQiLCJpYXQiOjE3ODYzNDI2NzQsImV4cCI6MTc4NjQyOTA3NH0.8v-1x51SQwL52EQOkOzKz4Qwec5_sjs94jkgMCnkvug
+
+Email: student@example.com
+Password: NewStudent123!
+
+Email: admin@quizplatform.com
+Password: NewPassword123
+
+simransingh@gmail.com
+simran123
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyOCIsInJvbGUiOiJTVFVERU5UIiwiaWF0IjoxNzg2MTA1NzAwLCJleHAiOjE3ODYxOTIxMDB9.W6XA48eqWRwsEuUhQk-YfDytrxTWpEOHPBY8jeDMfqk
+
+
+
+reset token
+
+e6233d15283f7addb8335f2aaa7715866e25040cf86c7eb65a0684499beebae9
+'''
