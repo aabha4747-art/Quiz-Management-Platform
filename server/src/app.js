@@ -49,11 +49,23 @@ app.use(
    CORS
 ========================================================= */
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://quiz-management-frontend-tbmj.onrender.com",
+  "https://quiz-management-platform-drab.vercel.app",
+];
+
 app.use(
   cors({
-    origin:
-      process.env.CLIENT_URL ||
-      "http://localhost:5173",
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(
+        new Error("Not allowed by CORS")
+      );
+    },
 
     credentials: true,
   })
