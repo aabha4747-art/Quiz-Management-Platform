@@ -1,6 +1,6 @@
 # 🧬 BioNova – Biotechnology Quiz & Learning Platform
 
-BioNova is a full-stack biotechnology learning and assessment platform designed to help students learn, test, and strengthen their biotechnology knowledge through interactive quizzes, progress tracking, gamification, analytics, leaderboards, and certificates.
+BioNova is a full-stack biotechnology learning and assessment platform designed to help students learn, test, and strengthen their biotechnology knowledge through interactive quizzes, progress tracking, gamification, analytics, leaderboards, achievements, and certificates.
 
 The platform provides separate **Student** and **Admin** experiences with secure authentication, role-based authorization, quiz management, detailed performance tracking, and a modern biotechnology-focused interface.
 
@@ -8,7 +8,11 @@ The platform provides separate **Student** and **Admin** experiences with secure
 
 ## 🌐 Live Application
 
-### Frontend
+### Primary Frontend – Vercel
+
+https://quiz-management-platform-drab.vercel.app
+
+### Alternative Frontend – Render
 
 https://quiz-management-frontend-tbmj.onrender.com
 
@@ -140,17 +144,47 @@ BioNova is designed to support quizzes across biotechnology subjects such as:
 
 - PostgreSQL
 
-### Deployment
+### Deployment & DevOps
 
-- Render Static Site – Frontend
-- Render Web Service – Backend
+- Vercel – Primary Frontend Deployment
+- Render Static Site – Alternative Frontend Deployment
+- Render Web Service – Backend API
 - Render PostgreSQL – Production Database
 - GitHub – Source Control
-- GitHub + Render – Automatic Deployment
+- GitHub + Vercel – Automatic Frontend Deployment
+- GitHub + Render – Automatic Backend Deployment
 
 ---
 
-## 🏗️ Project Architecture
+## 🏗️ Production Architecture
+
+```text
+                         GitHub
+                           │
+                 ┌─────────┴─────────┐
+                 │                   │
+                 ▼                   ▼
+              Vercel              Render
+         Primary Frontend      Backend Web Service
+          React + Vite          Node.js + Express
+                 │                   │
+                 │   HTTPS / REST    │
+                 └─────────►─────────┘
+                                     │
+                                     │ PostgreSQL
+                                     ▼
+                              Render PostgreSQL
+                              Production Database
+
+Alternative Frontend:
+Render Static Site ──────────► Render Backend API
+```
+
+The primary Vercel frontend and alternative Render frontend communicate with the same Render-hosted backend API and production PostgreSQL database.
+
+---
+
+## 🗂️ Project Structure
 
 ```text
 Quiz-Management-Platform/
@@ -191,139 +225,12 @@ Quiz-Management-Platform/
 │   ├── package.json
 │   └── .env.example
 │
+├── docs/
+│   └── screenshots/
+│
 ├── .gitignore
 └── README.md
 ```
-
----
-
-## 🔐 Authentication & Authorization
-
-BioNova uses **JWT-based authentication** to secure the application.
-
-The authentication system ensures that:
-
-- Unauthenticated users cannot access protected pages
-- Students can access student functionality
-- Admin users can access administrative functionality
-- Role-based authorization protects sensitive routes
-- Authentication persists across browser refreshes
-- Logout removes the stored authentication session
-- Passwords are securely hashed before being stored
-
----
-
-## 🔄 Student Learning Flow
-
-```text
-Home Page
-    ↓
-Register / Login
-    ↓
-Student Onboarding
-    ↓
-Student Dashboard
-    ↓
-Browse Quizzes
-    ↓
-Select Quiz
-    ↓
-Quiz Details
-    ↓
-Start Quiz
-    ↓
-Answer Questions
-    ↓
-Review Answers
-    ↓
-Submit Quiz
-    ↓
-Score Calculation
-    ↓
-Result Page
-    ↓
-Attempt History
-    ↓
-Progress Analytics
-    ↓
-XP / Levels / Streaks
-    ↓
-Leaderboard
-    ↓
-Certificates
-```
-
----
-
-## 📝 Quiz System
-
-The BioNova quiz system supports:
-
-- Timed assessments
-- Multiple-choice questions
-- Passing score configuration
-- Multiple quiz attempts
-- Automatic answer saving
-- Question navigation
-- Quiz progress tracking
-- Automatic submission when the timer expires
-- Score calculation
-- Pass/fail calculation
-- Correct answer review
-- Incorrect answer review
-- Question explanations
-- Attempt history
-- Student performance tracking
-
----
-
-## 🎮 Gamification System
-
-BioNova uses gamification to encourage continuous learning.
-
-Students can earn and track:
-
-### XP
-
-Students receive experience points based on their learning activity and quiz performance.
-
-### Levels
-
-XP contributes toward student level progression.
-
-### Learning Streaks
-
-Students can maintain learning streaks through regular activity.
-
-### Achievements
-
-Achievements reward important learning milestones.
-
-### Leaderboard
-
-Students can compare their progress and performance with other learners.
-
-### Certificates
-
-Eligible quiz completions can generate certificates demonstrating student achievement.
-
----
-
-## 📊 Progress Analytics
-
-Students can monitor their learning performance through analytics including:
-
-- Total quiz attempts
-- Average score
-- Highest score
-- Pass rate
-- Correct answers
-- Incorrect answers
-- Total questions attempted
-- Category-wise performance
-- XP progression
-- Learning streaks
-- Achievements
 
 ---
 
@@ -350,11 +257,13 @@ The database stores information related to:
 - Certificates
 - Notifications
 
+The production PostgreSQL database is hosted on **Render** and accessed securely by the backend through environment variables.
+
 ---
 
-## ⚙️ Local Development Setup
+# ⚙️ Local Development Setup
 
-### 1. Clone the Repository
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/aabha4747-art/Quiz-Management-Platform.git
@@ -368,7 +277,7 @@ cd Quiz-Management-Platform
 
 ---
 
-## 🖥️ Backend Setup
+## 🖥️ 2. Backend Setup
 
 Move into the server directory:
 
@@ -411,9 +320,9 @@ PASSWORD_RESET_EXPIRES_MINUTES=15
 CLIENT_URL=http://localhost:5173
 ```
 
-> Never commit your real `.env` file, database password, Gmail App Password, JWT secret, or admin password to GitHub.
+> ⚠️ Never commit your real `.env` file, database password, email App Password, JWT secret, or admin password to GitHub.
 
-Start the development server:
+Start the backend development server:
 
 ```bash
 npm run dev
@@ -427,7 +336,7 @@ http://localhost:5000
 
 ---
 
-## 🎨 Frontend Setup
+## 🎨 3. Frontend Setup
 
 Open another terminal and move into the client directory:
 
@@ -455,7 +364,7 @@ http://localhost:5173
 
 ---
 
-## 🌍 Environment Variables
+## 🌐 Environment Variables
 
 ### Backend Environment Variables
 
@@ -496,15 +405,57 @@ For production:
 VITE_API_URL=https://quiz-management-api-3kef.onrender.com/api
 ```
 
+No production passwords, database credentials, JWT secrets, or email credentials should be committed to the repository.
+
 ---
 
-## 🚀 Production Deployment
+# 🚀 Production Deployment
 
-BioNova is deployed using **Render**.
+BioNova uses a multi-service production deployment architecture:
 
-### Frontend – Render Static Site
+- **Vercel** hosts the primary React/Vite frontend.
+- **Render Static Site** hosts an alternative frontend deployment.
+- **Render Web Service** hosts the Node.js/Express backend.
+- **Render PostgreSQL** stores production application data.
 
-Configuration:
+---
+
+## ▲ Primary Frontend – Vercel
+
+Production URL:
+
+```text
+https://quiz-management-platform-drab.vercel.app
+```
+
+### Configuration
+
+```text
+Root Directory: client
+Framework Preset: Vite
+Build Command: npm run build
+Output Directory: dist
+```
+
+### Environment Variable
+
+```text
+VITE_API_URL=https://quiz-management-api-3kef.onrender.com/api
+```
+
+Vercel is connected to the GitHub repository so frontend changes can be automatically deployed from the repository.
+
+---
+
+## 🌐 Alternative Frontend – Render Static Site
+
+Production URL:
+
+```text
+https://quiz-management-frontend-tbmj.onrender.com
+```
+
+### Configuration
 
 ```text
 Root Directory: client
@@ -512,7 +463,7 @@ Build Command: npm install && npm run build
 Publish Directory: dist
 ```
 
-Environment variable:
+### Environment Variable
 
 ```text
 VITE_API_URL=https://quiz-management-api-3kef.onrender.com/api
@@ -520,9 +471,15 @@ VITE_API_URL=https://quiz-management-api-3kef.onrender.com/api
 
 ---
 
-### Backend – Render Web Service
+## ⚙️ Backend – Render Web Service
 
-Configuration:
+Backend API:
+
+```text
+https://quiz-management-api-3kef.onrender.com/api
+```
+
+### Configuration
 
 ```text
 Root Directory: server
@@ -532,13 +489,38 @@ Start Command: npm start
 
 Production backend environment variables are configured securely through the Render dashboard.
 
+The backend CORS configuration allows requests from the approved production frontend origins.
+
 ---
 
-### Database – Render PostgreSQL
+## 🗄️ Database – Render PostgreSQL
 
 The production application uses a Render-hosted PostgreSQL database.
 
 The backend connects to the production PostgreSQL instance using environment variables rather than hard-coded credentials.
+
+Production data includes users, quizzes, questions, attempts, answers, student profiles, achievements, certificates, and other application data.
+
+---
+
+## 🔄 Deployment Flow
+
+```text
+Developer
+   │
+   ▼
+GitHub Repository
+   │
+   ├──────────────► Vercel
+   │                │
+   │                └── Primary React/Vite Frontend
+   │
+   └──────────────► Render
+                    │
+                    ├── Alternative Frontend
+                    ├── Express Backend API
+                    └── PostgreSQL Database
+```
 
 ---
 
@@ -558,8 +540,11 @@ BioNova implements several security practices, including:
 - `.env` protection through `.gitignore`
 - Authentication middleware
 - Authorization middleware
+- Production credential rotation when required
 
 Sensitive credentials are **not stored directly in the source code**.
+
+Database passwords, JWT secrets, email credentials, and administrative credentials are managed using environment variables.
 
 ---
 
@@ -592,11 +577,11 @@ A successful response confirms that the backend can communicate with the product
 
 ---
 
-## ✅ Functionality Tested
+# ✅ Functionality Tested
 
-The production application has been tested successfully for the following functionality:
+The production application has been tested successfully across the deployed environment.
 
-### Authentication
+## Authentication
 
 - Registration
 - Student login
@@ -606,7 +591,7 @@ The production application has been tested successfully for the following functi
 - Protected routes
 - Role-based authorization
 
-### Student
+## Student
 
 - Student onboarding
 - Dashboard
@@ -626,8 +611,9 @@ The production application has been tested successfully for the following functi
 - Achievements
 - Certificates
 
-### Admin
+## Admin
 
+- Admin authentication
 - Admin dashboard
 - Category management
 - Quiz management
@@ -635,83 +621,91 @@ The production application has been tested successfully for the following functi
 - Student management
 - Analytics
 
-### Production
+## Production Infrastructure
 
-- Frontend deployment
-- Backend deployment
-- PostgreSQL connection
-- Frontend-to-backend API communication
+- Vercel frontend deployment
+- Render frontend deployment
+- Render backend deployment
+- PostgreSQL production connection
+- Vercel-to-Render API communication
+- Render-frontend-to-Render-API communication
 - Production authentication
-- Production quiz flow
-- Production database persistence
+- Production quiz retrieval
+- Production quiz submission
+- Production database reads
+- Production database writes
+- Attempt persistence
+- Progress retrieval
+- Leaderboard retrieval
+- Certificate functionality
 
 ---
 
-## 📸 Screenshots
+# 📸 Screenshots
 
-### Home Page
+## Home Page
 
 ![BioNova Home](docs/screenshots/home.png)
 
-### Login
+## Login
 
 ![BioNova Login](docs/screenshots/login.png)
 
-### Register
+## Register
 
 ![BioNova Register](docs/screenshots/register.png)
 
-### Student Dashboard
+## Student Dashboard
 
 ![Student Dashboard](docs/screenshots/student-dashboard.png)
 
-### Quiz Library
+## Quiz Library
 
 ![Quiz Library](docs/screenshots/quiz-library.png)
 
-### Quiz Attempt
+## Quiz Attempt
 
 ![Quiz Attempt](docs/screenshots/quiz-attempt.png)
 
-### Quiz Result
+## Quiz Result
 
 ![Quiz Result](docs/screenshots/quiz-result.png)
 
-### Progress Analytics
+## Progress Analytics
 
 ![Progress](docs/screenshots/progress.png)
 
-### Leaderboard
+## Leaderboard
 
 ![Leaderboard](docs/screenshots/leaderboard.png)
 
-### Certificate
+## Certificate
 
 ![Certificate](docs/screenshots/certificate.png)
 
-### Admin Dashboard
+## Admin Dashboard
 
 ![Admin Dashboard](docs/screenshots/admin-dashboard.png)
 
-### Admin Quiz Management
+## Admin Quiz Management
 
 ![Admin Quiz Management](docs/screenshots/admin-quiz-management.png)
 
-### Admin Category Management
+## Admin Category Management
 
 ![Admin Category Management](docs/screenshots/admin-category-management.png)
 
-### Admin Students
+## Admin Students
 
 ![Admin Students](docs/screenshots/admin-students.png)
 
-### Admin Analytics
+## Admin Analytics
 
 ![Admin Analytics](docs/screenshots/admin-analytics.png)
 
 ---
 
-## 🔮 Future Enhancements
+# 🔮 Future Enhancements
 
 Future versions of BioNova could include:
 
@@ -735,7 +729,7 @@ Future versions of BioNova could include:
 
 ---
 
-## 🎯 Project Objective
+# 🎯 Project Objective
 
 The objective of BioNova is to create an engaging digital learning environment where biotechnology students can:
 
@@ -749,9 +743,11 @@ The objective of BioNova is to create an engaging digital learning environment w
 
 The administrative system enables educators or platform administrators to manage learning content and monitor student performance.
 
+The project also demonstrates the development and deployment of a complete full-stack application using a modern React frontend, REST API architecture, PostgreSQL persistence, authentication, authorization, cloud deployment, and production environment configuration.
+
 ---
 
-## 📌 Project Status
+# 📌 Project Status
 
 **Status: Fully Functional & Deployed**
 
@@ -773,11 +769,25 @@ The current production system successfully supports:
 - Admin content management
 - Admin analytics
 - PostgreSQL persistence
-- Production deployment
+- Vercel frontend deployment
+- Render frontend deployment
+- Render backend deployment
+- Production database connectivity
+- Cross-origin frontend-to-backend communication
+
+### Production Deployment Status
+
+| Component | Platform | Status |
+|---|---|---|
+| Primary Frontend | Vercel | ✅ Live |
+| Alternative Frontend | Render | ✅ Live |
+| Backend API | Render | ✅ Live |
+| PostgreSQL Database | Render | ✅ Connected |
+| Source Control | GitHub | ✅ Active |
 
 ---
 
-## 👩‍💻 Author
+# 👩‍💻 Author
 
 **Aabha Tembhurne**
 
@@ -786,6 +796,6 @@ RV College of Engineering
 
 ---
 
-## 📄 License
+# 📄 License
 
 This project was developed for educational and academic purposes.
